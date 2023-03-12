@@ -2,14 +2,15 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-    <title><?= $tituloPagina ?></title>
-    <link rel="stylesheet" type="text/css" href="<?= RUTA_CSS ?>/estilo.css" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title><?= $tituloPagina ?></title>
 </head>
 <body>
 <div id="contenedor">
 <?php
-require(RAIZ_APP.'/vistas/comun/cabecera.php');
-require(RAIZ_APP.'/vistas/comun/sidebarIzq.php');
+require ('includes/vistas/comun/cabecera.php');
+/* require('includes/vistas/comun/sidebarIzq.php'); */
 ?>
 	<main>
 		<article>
@@ -17,8 +18,8 @@ require(RAIZ_APP.'/vistas/comun/sidebarIzq.php');
 		</article>
 	</main>
 <?php
-require(RAIZ_APP.'/vistas/comun/sidebarDer.php');
-require(RAIZ_APP.'/vistas/comun/pie.php');
+/* require('includes/vistas/comun/sidebarDer.php');*/
+require('includes/vistas/comun/pie.php');
 ?>
 </div>
 </body>

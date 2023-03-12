@@ -1,6 +1,6 @@
 <?php
 	echo '<header style="background-color: #FBC485; height: 80px; width: 100%; text-align: center;">
-                <a href="inicio.com">
+                <a href="../../../index.php">
                     <img src="../../../resources/logo.png"  alt="Logo" 
                                                             height="80px" 
                                                             style="float: left; margin-left: 15px;">
