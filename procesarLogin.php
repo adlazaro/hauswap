@@ -3,10 +3,24 @@
  // Capturo las variables username y password
  $username = htmlspecialchars(trim(strip_tags($_REQUEST["email"])));
  $password = htmlspecialchars(trim(strip_tags($_REQUEST["password"])));
-// Proceso las variables comprobando si es un usuario valido
+
+
+ define('BD_HOST', 'localhost');
+ define('BD_USER', 'hauswap');
+ define('BD_PASS', 'proyectoAW');
+ define('BD_NAME', 'hauswap');
+
+//Conexion con base de datos
+$conn = new mysqli(BD_HOST, BD_USER, BD_PASS, BD_NAME);
+if ($conn->connect_error){
+    die("La conexión ha fallado" . $conn->connect_error);
+}
+echo "Connected successfully";
+ 
 
 //ESTO LUEGO HAY QUE CAMBIARLO CON LO DE LA BASE DE DATOS
 
+// Proceso las variables comprobando si es un usuario valido
 if ($username == "user" && $password == "userpass"){
     // Establecer la variable de sesion login a true y nombre a "Usuario"
     $_SESSION["login"] = true;
