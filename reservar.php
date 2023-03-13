@@ -4,7 +4,7 @@
 <html lang ="es">
 <head> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>reservar</title>
+    <title> Reservar </title>
 </head>
 <body>
     <main>
