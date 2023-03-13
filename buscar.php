@@ -16,12 +16,16 @@ foreach ($resultados as $resultado) {
   echo $resultado['columna1'] . ' - ' . $resultado['columna2'] . '<br>';}
 
 -->
-
-<header>
+<?php
+$tituloPagina = 'Buscar';
+$contenidoPrincipal=<<<EOS
   <h1>Buscador: </h1>
   <form action="busqueda.php" method="POST">
   <label for="termino">Término de búsqueda:</label>
   <input type="text" id="termino" name="termino">
   <button type="submit">Buscar</button>
 </form>
-</header>
+
+EOS;
+require ('./includes/vistas/plantillas/plantilla.php');
+?>
