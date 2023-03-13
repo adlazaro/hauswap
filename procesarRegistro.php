@@ -1,26 +1,31 @@
 <?php
- session_start();
- // Capturo las variables username y password
+require_once 'includes/config.php';
+require_once 'includes/Usuario.php'; // Capturo las variables username y password
  $username = htmlspecialchars(trim(strip_tags($_REQUEST["email"])));
  $password = htmlspecialchars(trim(strip_tags($_REQUEST["password"])));
+ $password2 = htmlspecialchars(trim(strip_tags($_REQUEST["password2"])));
+ $nombre = htmlspecialchars(trim(strip_tags($_REQUEST["username"])));
+
+if($password != $password2){
+    echo "Las contraseñas deben coincidir!";
+}
+else{
+    $usuario = Usuario::buscaUsuario($username, $password);
+	
+    if ($usuario) {
+        echo "El usuario ya existe";
+    } else {
+        $usuario = Usuario::crea($username, $password, $nombre);
+        $_SESSION['login'] = true;
+        $_SESSION['nombre'] = $usuario->getcorreo();
+    }
+}
+
 // Proceso las variables comprobando si es un usuario valido
 
-//ESTO LUEGO HAY QUE CAMBIARLO CON LO DE LA BASE DE DATOS
 
-if ($username == "user" && $password == "userpass"){
-    // Establecer la variable de sesion login a true y nombre a "Usuario"
-    $_SESSION["login"] = true;
-    $_SESSION["nombre"] = "Usuario";
-}
-else if ($username == "admin" && $password == "adminpass"){
-    // Establecer la variable de sesion login a true y nomnbre a "Administrador"
-    // Establecer la variable esAdmin a true
-    $_SESSION["login"] = true;
-    $_SESSION["nombre"] = "Administrador";
-    $_SESSION["esAdmin"] = true;
-}
 
-$tituloPagina = 'LogIn';
+$tituloPagina = 'Registro';
 
 if (isset($_SESSION["login"])){
     $contenidoPrincipal=<<<EOS

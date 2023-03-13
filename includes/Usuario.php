@@ -22,9 +22,10 @@ class Usuario
     
     public static function crea($correo, $contraseña, $nombre) //$rol
     {
-        $user = new Usuario($correo, self::hashcontraseña($contraseña), $nombre);
+        $user = new Usuario($correo, $contraseña, $nombre); //self::hashcontraseña($contraseña)
         //$user->añadeRol($rol);
-        return $user->guarda();
+        $user->guarda();
+        return $user;
     }
 
     public static function buscaUsuario($correo, $contraseña)
@@ -103,8 +104,8 @@ class Usuario
             , $conn->real_escape_string($usuario->contraseña)
         );
         if ( $conn->query($query) ) {
-            $usuario->id = $conn->insert_id;
-            $result = self::insertaRoles($usuario);
+            //$usuario->id = $conn->insert_id;
+            //$result = self::insertaRoles($usuario);
         } else {
             error_log("Error BD ({$conn->errno}): {$conn->error}");
         }
@@ -250,9 +251,9 @@ class Usuario
     
     public function guarda()
     {
-        if ($this->id !== null) {
+       /*  if ($this->id !== null) {
             return self::actualiza($this);
-        }
+        } */
         return self::inserta($this);
     }
     

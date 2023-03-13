@@ -10,6 +10,7 @@ $contenidoPrincipal=<<<EOS
         <div><label>Correo electrónico:</label> <input type="text" name="email" /></div>
         <div><label>Nombre:</label> <input type="text" name="username" /></div>
         <div><label>Contraseña:</label> <input type="password" name="password" /></div>
+        <div><label>Repita la contraseña:</label> <input type="password" name="password2" /></div>
         <button type="submit">Registrarse</button>
     </fieldset>
 
