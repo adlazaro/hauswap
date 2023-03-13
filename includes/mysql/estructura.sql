@@ -8,13 +8,14 @@ DROP TABLE IF NOT EXISTS `RolesUsuario`;
 DROP TABLE IF NOT EXISTS 'Usuarios';
 DROP TABLE IF NOT EXISTS 'Mensajes';
 DROP TABLE IF NOT EXISTS 'Propiedades';
+DROP TABLE IF NOT EXISTS 'Valoraciones';
 
 CREATE TABLE IF NOT EXISTS `Reservas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `casa_1` int(11) NOT NULL AUTO_INCREMENT,
   `casa_2` int(11) NOT NULL AUTO_INCREMENT,
-  `fecha_entrada` DATETIME NOT NULL,
-  `fecha_salida` DATETIME NOT NULL,
+  `fecha_entrada` DATE NOT NULL,
+  `fecha_salida` DATE NOT NULL,
   'estado' varchar(30) COLLATE utf8mb4_general_ci NOT NULL UNIQUE,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -39,22 +40,47 @@ CREATE TABLE IF NOT EXISTS `RolesUsuario` (
   `usuario` int(11) NOT NULL AUTO_INCREMENT,
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+CREATE TABLE IF NOT EXISTS 'Usuarios' (
+    `correo` varchar(30) COLLATE utf8mb4_general_ci NOT NULL UNIQUE,
+    `nombre` varchar(30) COLLATE utf8mb4_general_ci NOT NULL UNIQUE,
+    `contraseña` varchar(30) COLLATE utf8mb4_general_ci NOT NULL UNIQUE,
+    `telefono` int(11) NOT NULL AUTO_INCREMENT,
+    `sexo`varchar(10) COLLATE utf8mb4_general_ci NOT NULL UNIQUE,
+    `fecha_nacimiento` DATE NOT NULL,
+    'pais' varchar(20) COLLATE utf8mb4_general_ci NOT NULL UNIQUE,
+    `fecha_registro` DATE NOT NULL,
+    `servidor_fotoperfil`varchar(40) COLLATE utf8mb4_general_ci NOT NULL UNIQUE,
+    'biografia' varchar(2000) COLLATE utf8mb4_general_ci NOT NULL UNIQUE,
+    'tipo' varchar(10) COLLATE utf8mb4_general_ci NOT NULL UNIQUE,
+    PRIMARY KEY (`correo`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 CREATE TABLE IF NOT EXISTS 'Mensajes' (
-`id` int(11) NOT NULL AUTO_INCREMENT,
-`fecha_hora` DATETIME NOT NULL,
-`id_remitente` varchar(30) COLLATE utf8mb4_general_ci NOT NULL UNIQUE,
-'contenido' varchar(2000) COLLATE utf8mb4_general_ci NOT NULL UNIQUE,
-PRIMARY KEY (`id`)
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `fecha_hora` DATETIME NOT NULL,
+    `id_remitente` varchar(30) COLLATE utf8mb4_general_ci NOT NULL UNIQUE,
+    'contenido' varchar(2000) COLLATE utf8mb4_general_ci NOT NULL UNIQUE,
+    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE IF NOT EXISTS 'Propiedades' (
-`id` int(11) NOT NULL AUTO_INCREMENT,
-`id_usuario` varchar(30) COLLATE utf8mb4_general_ci NOT NULL UNIQUE,
-`nombre` varchar(30) COLLATE utf8mb4_general_ci NOT NULL UNIQUE,
-`localizacion`varchar(30) COLLATE utf8mb4_general_ci NOT NULL UNIQUE,
-`numero_valoraciones` int(11) NOT NULL AUTO_INCREMENT,
-'descripcion' varchar(2000) COLLATE utf8mb4_general_ci NOT NULL UNIQUE,
-'estrellas' int(11) NOT NULL AUTO_INCREMENT,
-PRIMARY KEY (`id`)
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `id_usuario` varchar(30) COLLATE utf8mb4_general_ci NOT NULL UNIQUE,
+    `nombre` varchar(30) COLLATE utf8mb4_general_ci NOT NULL UNIQUE,
+    `localizacion`varchar(30) COLLATE utf8mb4_general_ci NOT NULL UNIQUE,
+    `numero_valoraciones` int(11) NOT NULL AUTO_INCREMENT,
+    'descripcion' varchar(2000) COLLATE utf8mb4_general_ci NOT NULL UNIQUE,
+    'estrellas' int(11) NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+CREATE TABLE IF NOT EXISTS 'Valoraciones' (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `id_casa` int(11) NOT NULL AUTO_INCREMENT,
+    `id_reserva` int(11) NOT NULL AUTO_INCREMENT,
+    `id_usuario` varchar(30) COLLATE utf8mb4_general_ci NOT NULL UNIQUE,
+    'estrellas' int(11) NOT NULL AUTO_INCREMENT,
+    'opinion' varchar(2000) COLLATE utf8mb4_general_ci NOT NULL UNIQUE,
+    `fecha` DATE NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
