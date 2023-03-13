@@ -6,6 +6,8 @@ DROP TABLE IF EXISTS `Chat`;
 DROP TABLE IF EXISTS 'Roles';
 DROP TABLE IF NOT EXISTS `RolesUsuario`;
 DROP TABLE IF NOT EXISTS 'Usuarios';
+DROP TABLE IF NOT EXISTS 'Mensajes';
+DROP TABLE IF NOT EXISTS 'Propiedades';
 
 CREATE TABLE IF NOT EXISTS `Reservas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -35,5 +37,24 @@ CREATE TABLE IF NOT EXISTS `Roles` (
 CREATE TABLE IF NOT EXISTS `RolesUsuario` (
   `rol` int(11) NOT NULL AUTO_INCREMENT,
   `usuario` int(11) NOT NULL AUTO_INCREMENT,
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE IF NOT EXISTS 'Mensajes' (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`fecha_hora` DATETIME NOT NULL,
+`id_remitente` varchar(30) COLLATE utf8mb4_general_ci NOT NULL UNIQUE,
+'contenido' varchar(2000) COLLATE utf8mb4_general_ci NOT NULL UNIQUE,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE IF NOT EXISTS 'Propiedades' (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`id_usuario` varchar(30) COLLATE utf8mb4_general_ci NOT NULL UNIQUE,
+`nombre` varchar(30) COLLATE utf8mb4_general_ci NOT NULL UNIQUE,
+`localizacion`varchar(30) COLLATE utf8mb4_general_ci NOT NULL UNIQUE,
+`numero_valoraciones` int(11) NOT NULL AUTO_INCREMENT,
+'descripcion' varchar(2000) COLLATE utf8mb4_general_ci NOT NULL UNIQUE,
+'estrellas' int(11) NOT NULL AUTO_INCREMENT,
+PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
