@@ -1,5 +1,5 @@
 <?php 
-session_start();
+require_once 'Aplicacion.php';
 
  // Capturo las variables username y password
  $username = htmlspecialchars(trim(strip_tags($_REQUEST["email"])));
@@ -7,7 +7,7 @@ session_start();
 
 define('BD_HOST', 'localhost');
 define('BD_USER', 'hauswap');
-define('BD_PASS', 'proyectoAW');
+define('BD_PASS', 'aw');
 define('BD_NAME', 'hauswap');
 
 
@@ -25,3 +25,7 @@ if ($conn->connect_error){
 ini_set('default_charset', 'UTF-8');
 setLocale(LC_ALL, 'es_ES.UTF.8');
 date_default_timezone_set('Europe/Madrid');
+
+// Inicializa la aplicación
+$app = Aplicacion::getInstance();
+$app->init(['host'=>BD_HOST, 'bd'=>BD_NAME, 'user'=>BD_USER, 'pass'=>BD_PASS]);

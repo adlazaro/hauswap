@@ -1,38 +1,20 @@
 <?php
- session_start();
+require_once 'includes/config.php';
+require_once 'includes/Usuario.php';
  // Capturo las variables username y password
  $username = htmlspecialchars(trim(strip_tags($_REQUEST["email"])));
  $password = htmlspecialchars(trim(strip_tags($_REQUEST["password"])));
 
+ $usuario = Usuario::login($username, $password);
+        
+ if (!$usuario) {
+     echo "El usuario o el password no coinciden";
+ } else {
+     $_SESSION['login'] = true;
+     $_SESSION['nombre'] = $usuario->getcorreo();
+     //$_SESSION['esAdmin'] = $usuario->tieneRol(Usuario::ADMIN_ROLE);
+ }
 
- define('BD_HOST', 'localhost');
- define('BD_USER', 'hauswap');
- define('BD_PASS', 'proyectoAW');
- define('BD_NAME', 'hauswap');
-
-//Conexion con base de datos
-$conn = new mysqli(BD_HOST, BD_USER, BD_PASS, BD_NAME);
-if ($conn->connect_error){
-    die("La conexión ha fallado" . $conn->connect_error);
-}
-echo "Connected successfully";
- 
-
-//ESTO LUEGO HAY QUE CAMBIARLO CON LO DE LA BASE DE DATOS
-
-// Proceso las variables comprobando si es un usuario valido
-if ($username == "user" && $password == "userpass"){
-    // Establecer la variable de sesion login a true y nombre a "Usuario"
-    $_SESSION["login"] = true;
-    $_SESSION["nombre"] = "Usuario";
-}
-else if ($username == "admin" && $password == "adminpass"){
-    // Establecer la variable de sesion login a true y nomnbre a "Administrador"
-    // Establecer la variable esAdmin a true
-    $_SESSION["login"] = true;
-    $_SESSION["nombre"] = "Administrador";
-    $_SESSION["esAdmin"] = true;
-}
 
 $tituloPagina = 'LogIn';
 
