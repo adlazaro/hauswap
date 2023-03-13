@@ -1,30 +1,77 @@
-<!-- contiene el formulario de login -->
 <?php
-$tituloPagina = 'Reservar';
-$contenidoPrincipal=<<<EOS
 
-<form action="procesarReserva.php" method="post">
-<!-- hay que crear las bases de datos -->
-    <label for="casa">Casa:</label>
-    <select name="casa" id="casa">
-        <option value="">Selecciona una casa</option>
-        <option value="1">Casa 1</option>
-        <option value="2">Casa 2</option>
-        <option value="3">Casa 3</option>
-        <!-- agregar más opciones aquí -->
-        </select>
+require_once 'includes/config.php';
+ 
+$sql = "SELECT * FROM Viajes";
+$resultado = $conn->query($sql);
+$ciudad;
+  
+// NO OS VA A FUNCIONAR SIN CREAR UNA TABLA ASÍ:
+/*
+Nombre tabla: Viajes
+Campos : id (int prim key) | ciudad(varchar)
+*/
 
-        <label for="fecha_entrada">Fecha de entrada:</label>
-        <input type="date" name="fecha_entrada" id="fecha_entrada" required>
+// Verifica si se encontraron registros en la tabla
+if ($resultado->num_rows > 0) {
+    // Imprime cada registro encontrado
+    while($fila = $resultado->fetch_assoc()) {
+        //echo "Ciudad: " . $fila["ciudad"]. "<br>";
+        $ciudad = $fila["ciudad"];
+    }
+} else {
+    echo "0 resultados";
+}
 
-        <label for="fecha_salida">Fecha de salida:</label>
-        <input type="date" name="fecha_salida" id="fecha_salida" required>
+$tituloPagina = 'Valorar';
 
-        <input type="submit" value="Reservar">
+ $contenidoPrincipal=<<<EOS
 
-</form>
+<!--Para las estrellas  (lo he encontrado en una pag pero habrá mil maneras y si hacemos esta igual es mejor hacer un css aparte) pero en esta practica justo eso no importa-->
+
+        <style>
+        p.clasificacion {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+        
+        p.clasificacion input {
+            position: absolute;
+            top: -100px;
+        }
+        
+        p.clasificacion label {
+            float: right;
+            color: #333;
+        }
+        
+        
+        p.clasificacion label:hover,
+        p.clasificacion label:hover ~ label,
+        p.clasificacion input:checked ~ label {
+            color: #dd4;
+        }
+        </style>
+
+        <h1>Mi viaje a $ciudad</h1>
+        <img src="" id="valorarFoto" width="px" height="px">
+        <p>VALORAR</p>
+        <p class="clasificacion">
+        <input id="radio1" type="radio" name="estrellas" value="5">
+        <label for="radio1">★</label>
+        <input id="radio2" type="radio" name="estrellas" value="4">
+        <label for="radio2">★</label>
+        <input id="radio3" type="radio" name="estrellas" value="3">
+        <label for="radio3">★</label>
+        <input id="radio4" type="radio" name="estrellas" value="2">
+        <label for="radio4">★</label>
+        <input id="radio5" type="radio" name="estrellas" value="1">
+        <label for="radio5">★</label>
 
 
 EOS;
+
+
 require ('./includes/vistas/plantillas/plantilla.php');
 ?>
