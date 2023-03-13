@@ -1,8 +1,31 @@
 <?php
 
+require_once 'includes/config.php';
+ 
+$sql = "SELECT * FROM Viajes";
+$resultado = $conn->query($sql);
+$ciudad;
+  
+// NO OS VA A FUNCIONAR SIN CREAR UNA TABLA ASÍ:
+/*
+Nombre tabla: Viajes
+Campos : id (int prim key) | ciudad(varchar)
+*/
+
+// Verifica si se encontraron registros en la tabla
+if ($resultado->num_rows > 0) {
+    // Imprime cada registro encontrado
+    while($fila = $resultado->fetch_assoc()) {
+        //echo "Ciudad: " . $fila["ciudad"]. "<br>";
+        $ciudad = $fila["ciudad"];
+    }
+} else {
+    echo "0 resultados";
+}
+
 $tituloPagina = 'Valorar';
 
-$contenidoPrincipal=<<<EOS
+ $contenidoPrincipal=<<<EOS
 
 <!--Para las estrellas  (lo he encontrado en una pag pero habrá mil maneras y si hacemos esta igual es mejor hacer un css aparte) pero en esta practica justo eso no importa-->
 
@@ -31,7 +54,7 @@ $contenidoPrincipal=<<<EOS
         }
         </style>
 
-        <h1>Mi viaje a ...</h1>
+        <h1>Mi viaje a $ciudad</h1>
         <img src="" id="valorarFoto" width="px" height="px">
         <p>VALORAR</p>
         <p class="clasificacion">
@@ -48,6 +71,7 @@ $contenidoPrincipal=<<<EOS
 
 
 EOS;
+
 
 require ('./includes/vistas/plantillas/plantilla.php');
 ?>
