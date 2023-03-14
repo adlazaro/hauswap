@@ -28,5 +28,4 @@ $status = "UNKNOWN";
                 <a href="./Login.php">
                 <?= $status ?>
                 </a> <br> <br>
-
-            </div>';
+</div>

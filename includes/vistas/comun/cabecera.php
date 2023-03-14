@@ -3,16 +3,13 @@
         if (isset($_POST['mostrarOcultar'])) {
             $mostrarMenu = ! $mostrarMenu; //cambia el valor
         }  
-?>
-
-<?php
+        
 // Crear una cookie para la variable y obtener el valor actual de $mostrarMenu de la cookie, si existe
 if (isset($_COOKIE['mostrarMenu'])) {
     $mostrarMenu = $_COOKIE['mostrarMenu'] == 'true';
 } else {
     $mostrarMenu = false;
 }
-
 // Actualizar el valor de $mostrarMenu si se envió el formulario, para que muestre o deje de mostrar
 if (isset($_POST['mostrarOcultar'])) {
     $mostrarMenu = !$mostrarMenu;
@@ -23,9 +20,8 @@ if ($mostrarMenu)
     require('menu.php');
 ?>
 
-<?php
-    // Header
-	echo '<header style="background-color: #FBC485; height: 80px; width: 100%; text-align: center;">
+
+<header style="background-color: #FBC485; height: 80px; width: 100%; text-align: center;">
                 <a href="./index.php">
                     <img src="./resources/logo.png"  alt="Logo" 
                                                             height="80px" 
@@ -35,7 +31,7 @@ if ($mostrarMenu)
                 <img src="./resources/nombre.png"    alt="Nombre" 
                                                             height="80px">
                             
-                <!--Botón--!>
+                <!--Botón-->
                 <form method="post">
                     <button type="submit" name="mostrarOcultar" style="position: absolute;
                                                                    top: 0;
@@ -54,5 +50,4 @@ if ($mostrarMenu)
                                                                    right: 0;">
                     </button>
                 </form>
-            </header>';
-?>
+     </header>
