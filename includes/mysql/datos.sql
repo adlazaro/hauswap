@@ -1,19 +1,24 @@
 /*
   Recuerda que deshabilitar la opción "Enable foreign key checks" para evitar problemas a la hora de importar el script.
 */
-TRUNCATE TABLE `RolesUsuario`;
-TRUNCATE TABLE `Roles`;
-/*TRUNCATE TABLE `Usuarios`;*/
+/* TRUNCATE TABLE `RolesUsuario`; */
+TRUNCATE TABLE `roles`;
+TRUNCATE TABLE `usuarios`;
 
-INSERT INTO `Roles` (`id`, `nombre`) VALUES
+INSERT INTO `roles` (`rol`, `nombre`) VALUES
 (1, 'admin'),
 (2, 'user');
 
+INSERT INTO `usuarios` (`correo`, `nombre`, `contraseña`, `telefono`, `sexo`, `fecha_nacimiento`, `pais`, `fecha_registro`, `servidor_fotoperfil`, `biografia`, `tipo`) VALUES
+('admin@admin', 'Admin', '$2y$10$P/fjjOxUu7f0I3gCIShVp.mUX3HPaTV2BzmsTR2kprtBhaCpcMiwm', 0, 'nc', '0000-00-00', 'España', '2023-03-14', '', '', 1), 
+/* contraseña: admin */
 
-INSERT INTO `RolesUsuario` (`usuario`, `rol`) VALUES
+
+
+/* INSERT INTO `RolesUsuario` (`usuario`, `rol`) VALUES
 (1, 1),
 (1, 2),
-(2, 2);
+(2, 2); */
 
 /*
   user: userpass

@@ -104,7 +104,7 @@ class Usuario
             , $conn->real_escape_string($usuario->genero)
             , $conn->real_escape_string($usuario->fecha)            
             , $conn->real_escape_string($usuario->pais)
-            , $conn->real_escape_string("user")
+            , $conn->real_escape_string(2)
         );
         if ( $conn->query($query) ) {
             //$usuario->id = $conn->insert_id;
