@@ -1,12 +1,7 @@
 <?php
 		$mostrarMenu = false;
-        var_dump($_POST);
         if (isset($_POST['mostrarOcultar'])) {
-            if ($mostrarMenu) {
-                $mostrarMenu = false;
-            } else {
-                $mostrarMenu = true;
-            }
+            $mostrarMenu = ! $mostrarMenu; //cambia el valor
         }  
 ?>
 
@@ -23,7 +18,7 @@ if (isset($_POST['mostrarOcultar'])) {
     $mostrarMenu = !$mostrarMenu;
     setcookie('mostrarMenu', $mostrarMenu ? 'true' : 'false', time() + 3600, '/');
 }
-
+// Mostrar Menu cuando se haga click en el botón
 if ($mostrarMenu)
     require('menu.php');
 ?>
@@ -41,15 +36,23 @@ if ($mostrarMenu)
                             
                 <!--Botón--!>
                 <form method="post">
-                <button type="submit" name="mostrarOcultar" style="background-image: src= "resources/menu.png"; 
-                                                            width: 500px; 
-                                                            height: 500px;
-                                                            float: right; 
-                                                            margin-rught: 15px;">
+                <button type="submit" name="mostrarOcultar" style="position: absolute;
+                                                                   top: 0;
+                                                                   right: 0;
+                                                                   margin-top: 10px;
+                                                                   margin-right: 10px;
+                                                                    width: 70px; 
+                                                                    height: 70px;
+                                                                    background-color: transparent;
+                                                                    border-color:transparent;">
+                            <img src="./resources/menu.png" alt="Menu" 
+                                                            height="70px"
+                                                            width="70px"
+                                                            style="position: absolute;
+                                                                   top: 0;
+                                                                   right: 0;">
                 </button>
                 </form>
-
-
                 
 
                 <!--
