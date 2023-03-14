@@ -2,7 +2,7 @@
 require_once 'includes/config.php';
 require_once 'includes/Usuario.php';
 
-                if (isset($_SESSION["login"])) 
+                if ($_SESSION["login"] == false) 
                     echo'Iniciar Sesión';
                 else
                    echo 'Cerrar Sesión';
