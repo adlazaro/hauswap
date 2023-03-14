@@ -5,17 +5,17 @@
                                                     top: 0;
                                                     right: 0;
                                                     padding: 30px;">
-                <a href="../../../index.php">
+                <a href="./index.php">
                 Inicio
                 </a> <br> <br>
-                <a href="../../../chat.php">
+                <a href="./chat.php">
                 Chats
                 </a> <br> <br>
-                <a href="../../../miCuenta.php">
+                <a href="./miCuenta.php">
                 Cuenta
                 </a> <br> <br>
-                <a href="../../../index.php">
-                Cerrar Sesión
+                <a href="./Login.php">
+                Login
                 </a> <br> <br>
       
             </div>';
