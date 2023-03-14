@@ -1,9 +1,9 @@
 <?php 
 require_once 'Aplicacion.php';
 
- // Capturo las variables username y password
- $username = htmlspecialchars(trim(strip_tags($_REQUEST["email"])));
- $password = htmlspecialchars(trim(strip_tags($_REQUEST["password"])));
+ // ESTO CREO QUE YA NO VA AQUÍ
+//  $username = htmlspecialchars(trim(strip_tags($_REQUEST["email"])));
+ // $password = htmlspecialchars(trim(strip_tags($_REQUEST["password"])));
 
 define('BD_HOST', 'localhost');
 define('BD_USER', 'hauswap');
