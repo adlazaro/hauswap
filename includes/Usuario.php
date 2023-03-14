@@ -10,40 +10,38 @@ class Usuario
 
     public static function login($correo, $contraseña)
     {
-        $usuario = self::buscaUsuario($correo, $contraseña);
-        /* if ($usuario && $usuario->compruebacontraseña($contraseña)) {
+        $usuario = self::buscaUsuario($correo);
+        if ($usuario && $usuario->compruebacontraseña($contraseña, $correo)) {
             //return self::cargaRoles($usuario);
             return $usuario;
         }
-        return false; */
-
-        return $usuario;
+        return false;
     }
     
     public static function crea($correo, $contraseña, $nombre) //$rol
     {
-        $user = new Usuario($correo, $contraseña, $nombre); //self::hashcontraseña($contraseña)
+        $user = new Usuario($correo, self::hashcontraseña($contraseña), $nombre); 
         //$user->añadeRol($rol);
         $user->guarda();
         return $user;
     }
 
-    public static function buscaUsuario($correo, $contraseña)
+    public static function buscaUsuario($correo)
     {
         $conn = Aplicacion::getInstance()->getConexionBd();
         $query = sprintf("SELECT * FROM usuarios U WHERE U.correo='%s'", $conn->real_escape_string($correo));
         $rs = $conn->query($query);
-        $result = false;
+        $user = false;
         if ($rs) {
             $fila = $rs->fetch_assoc();
-            if ($fila && ($fila['contraseña'] == $contraseña)) {
-                $result = new Usuario($fila['correo'], $fila['contraseña'], $fila['nombre']);
+            if($fila){
+                $user = new Usuario($fila['correo'], $fila['contraseña'], $fila['nombre']);
             }
             $rs->free();
         } else {
             error_log("Error BD ({$conn->errno}): {$conn->error}");
         }
-        return $result;
+        return $user;
     }
 
     public static function buscaPorId($idUsuario)
@@ -66,7 +64,7 @@ class Usuario
     
     private static function hashcontraseña($contraseña)
     {
-        return contraseña_hash($contraseña, contraseña_DEFAULT);
+        return password_hash($contraseña, PASSWORD_BCRYPT); //he cambiado el algoritmo para que siempre sea una contraseña de 60 caracteres y no de error 
     }
 
     private static function cargaRoles($usuario)
@@ -239,9 +237,22 @@ class Usuario
         return array_search($role, $this->roles) !== false;
     }
 
-    public function compruebacontraseña($contraseña)
+    public function compruebacontraseña($password, $correo)
     {
-        return password_verify($contraseña, $this->contraseña);
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = sprintf("SELECT * FROM usuarios U WHERE U.correo='%s'", $conn->real_escape_string($correo));
+        $rs = $conn->query($query);
+        if ($rs) {
+            $fila = $rs->fetch_assoc();
+            if($fila){
+                return password_verify($password, $fila['contraseña']); 
+            }
+            $rs->free();
+        } else {
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        }
+
+        return false;
     }
 
     public function cambiacontraseña($nuevocontraseña)
