@@ -99,7 +99,7 @@ class Usuario
             , $conn->real_escape_string($usuario->correo)
             , $conn->real_escape_string($usuario->nombre)
             , $conn->real_escape_string($usuario->contraseña)
-            , $conn->real_escape_string(date("j, n, Y"))
+            , $conn->real_escape_string(date("Y-n-j"))
             , $conn->real_escape_string($usuario->telefono)
             , $conn->real_escape_string($usuario->genero)
             , $conn->real_escape_string($usuario->fecha)            
