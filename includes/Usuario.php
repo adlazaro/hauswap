@@ -18,10 +18,9 @@ class Usuario
         return false;
     }
     
-    public static function crea($correo, $contraseña, $nombre) //$rol
+    public static function crea($correo, $contraseña, $nombre, $telefono, $genero, $fecha, $pais)
     {
-        $user = new Usuario($correo, self::hashcontraseña($contraseña), $nombre); 
-        //$user->añadeRol($rol);
+        $user = new Usuario($correo, self::hashcontraseña($contraseña), $nombre, $telefono, $genero, $fecha, $pais); 
         $user->guarda();
         return $user;
     }
@@ -96,10 +95,16 @@ class Usuario
     {
         $result = false;
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $query=sprintf("INSERT INTO usuarios(correo, nombre, contraseña) VALUES ('%s', '%s', '%s')"
+        $query=sprintf("INSERT INTO usuarios(correo, nombre, contraseña, fecha_registro, telefono, sexo, fecha_nacimiento, pais, tipo) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')"
             , $conn->real_escape_string($usuario->correo)
             , $conn->real_escape_string($usuario->nombre)
             , $conn->real_escape_string($usuario->contraseña)
+            , $conn->real_escape_string(date("j, n, Y"))
+            , $conn->real_escape_string($usuario->telefono)
+            , $conn->real_escape_string($usuario->genero)
+            , $conn->real_escape_string($usuario->fecha)            
+            , $conn->real_escape_string($usuario->pais)
+            , $conn->real_escape_string("user")
         );
         if ( $conn->query($query) ) {
             //$usuario->id = $conn->insert_id;
@@ -195,12 +200,24 @@ class Usuario
 
     private $roles;
 
-    private function __construct($correo, $contraseña, $nombre, $id = null) //,$roles = []
+    private $telefono;
+    
+    private $genero;
+
+    private $fecha;
+    
+    private $pais;
+
+    private function __construct($correo, $contraseña, $nombre, $telefono, $genero, $fecha, $pais) //,$roles = []
     {
-        $this->id = $id;
+        //$this->id = $id;
         $this->correo = $correo;
         $this->contraseña = $contraseña;
         $this->nombre = $nombre;
+        $this->telefono = $telefono;
+        $this->genero = $genero;
+        $this->fecha = $fecha;
+        $this->pais = $pais;
         //$this->roles = $roles;
     }
 
@@ -219,10 +236,10 @@ class Usuario
         return $this->nombre;
     }
 
-    public function añadeRol($role)
+    /* public function añadeRol($role)
     {
         $this->roles[] = $role;
-    }
+    } */
 
     public function getRoles()
     {
