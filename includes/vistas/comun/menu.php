@@ -2,7 +2,7 @@
 require_once 'includes/config.php';
 require_once 'includes/Usuario.php';
 $status = "UNKNOWN";
-                if ($_SESSION["login"] == true) // Logged In
+                if (isset($_SESSION["login"]))  // Logged In
                     $status = "Cerrar Sesión";
                 else
                     $status = "Iniciar Sesión / Registrarse";
@@ -10,8 +10,7 @@ $status = "UNKNOWN";
 ?>
 
 
-<?php
-	    echo '<div style="background-color: #FBC485;    height: 100%; 
+<div style="background-color: #FBC485;    height: 100%; 
                                                     width: 25%;
                                                     position: fixed;
                                                     top: 0;
@@ -31,4 +30,3 @@ $status = "UNKNOWN";
                 </a> <br> <br>
 
             </div>';
-?>

@@ -4,7 +4,7 @@ require_once 'includes/config.php';
 require_once 'includes/Usuario.php';
 
 //Sesión Iniciada
-if ($_SESSION["login"] == true){
+if (isset($_SESSION["login"])) {
 
     echo 'Bienvenido a Tu Cuenta';
     $tituloPagina = 'MiCuenta';
