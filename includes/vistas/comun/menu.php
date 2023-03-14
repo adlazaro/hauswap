@@ -2,7 +2,7 @@
 require_once 'includes/config.php';
 require_once 'includes/Usuario.php';
 $status = "UNKNOWN";
-                if (isset($_SESSION["login"])) // Logged In
+                if ($_SESSION["login"] == true) // Logged In
                     $status = "Cerrar Sesión";
                 else
                     $status = "Iniciar Sesión / Registrarse";
