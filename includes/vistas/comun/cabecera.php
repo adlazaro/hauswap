@@ -8,9 +8,14 @@
 
                 <img src="./resources/nombre.png"    alt="Nombre" 
                                                             height="80px">
-
-                <img src="./resources/menu.png"  alt="Menu" 
-                                                        height="50px" 
-                                                        style="float: right; margin-right: 15px; margin-top:15px;">
+                            
+                <!--Botón--!>
+                <form method="post">
+                <input type="image" name="mostrarOcultar"   src="./resources/menu.png"
+                                                            alt="Menu" 
+                                                            height="50px" 
+                                                            style="float: right; margin-right: 15px; margin-top:15px;">
+                </form>
+      
             </header>';
 ?>
