@@ -1,4 +1,17 @@
 <?php
+		$mostrarMenu = false;
+
+		if (isset($_POST['mostrarOcultar'])) {
+			$mostrarMenu = ! $mostrarMenu; 
+		}
+?>
+
+<?php
+	if ($mostrarMenu)
+        require('includes/vistas/comun/menu.php');
+?>
+
+<?php
 	echo '<header style="background-color: #FBC485; height: 80px; width: 100%; text-align: center;">
                 <a href="./index.php">
                     <img src="./resources/logo.png"  alt="Logo" 
@@ -9,18 +22,19 @@
                 <img src="./resources/nombre.png"    alt="Nombre" 
                                                             height="80px">
                             
-                <!--Botón
+                <!--Botón--!>
                 <form method="post">
                 <input type="image" name="mostrarOcultar"   src="./resources/menu.png"
                                                             alt="Menu" 
                                                             height="50px" 
                                                             style="float: right; margin-right: 15px; margin-top:15px;">
-                </form> --!>
+                </form>
 
+                <!--
                 <a href="./includes/vistas/comun/menu.php">
                     <img src="./resources/logo.png"  alt="Logo" 
                                                             height="80px" 
                                                             style="float: right; margin-left: 15px;">
-                </a>
+                </a> --!>
             </header>';
 ?>
