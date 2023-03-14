@@ -1,11 +1,11 @@
 <?php
 require_once 'includes/config.php';
 require_once 'includes/Usuario.php';
-
-                if (isset($_SESSION["login"])) 
-                    echo'Iniciar Sesión';
+$status = "UNKNOWN";
+                if (isset($_SESSION["login"])) // Logged In
+                    $status = "Cerrar Sesión";
                 else
-                   echo 'Cerrar Sesión';
+                    $status = "Iniciar Sesión / Registrarse";
                 
 ?>
 
@@ -27,7 +27,7 @@ require_once 'includes/Usuario.php';
                 Cuenta
                 </a> <br> <br>
                 <a href="./Login.php">
-                Iniciar Sesión/Registrarse
+                <?= $status ?>
                 </a> <br> <br>
 
             </div>';
