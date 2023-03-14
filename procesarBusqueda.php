@@ -1,16 +1,16 @@
 <?php
 require_once 'includes/config.php';
 
-$resultado = '';
+$resultados = '';
 
 if (isset($_POST['termino'])) {
     $search_term = $_POST['termino'];
-    $sql = "SELECT * FROM Viajes WHERE ciudad LIKE '%$search_term%'";
+    $sql = "SELECT * FROM propiedades WHERE localizacion LIKE '%$search_term%'";
     $result= $conn->query($sql);
 
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-            $resultados .= "Casas: " . $row["ciudad"] . "<br>";
+            $resultados .= "Casas: " . "<br>" . $row["nombre"] ." en     " . $row["localizacion"] . "<br>";
         }
     } else {
         echo "0 resultados";

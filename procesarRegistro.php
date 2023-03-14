@@ -5,6 +5,10 @@ require_once 'includes/Usuario.php'; // Capturo las variables username y passwor
  $password = htmlspecialchars(trim(strip_tags($_REQUEST["password"])));
  $password2 = htmlspecialchars(trim(strip_tags($_REQUEST["password2"])));
  $nombre = htmlspecialchars(trim(strip_tags($_REQUEST["username"])));
+ $telefono = htmlspecialchars(trim(strip_tags($_REQUEST["telefono"])));
+ $genero = htmlspecialchars(trim(strip_tags($_REQUEST["genero"])));
+ $fecha = htmlspecialchars(trim(strip_tags($_REQUEST["fecha"])));
+ $pais = htmlspecialchars(trim(strip_tags($_REQUEST["pais"])));
 
 if($password != $password2){
     echo "Las contraseñas deben coincidir!";
@@ -15,7 +19,7 @@ else{
     if ($usuario) {
         echo "El usuario ya existe";
     } else {
-        $usuario = Usuario::crea($username, $password, $nombre);
+        $usuario = Usuario::crea($username, $password, $nombre, $telefono, $genero, $fecha, $pais);
         $_SESSION['login'] = true;
         $_SESSION['nombre'] = $usuario->getcorreo();
     }
