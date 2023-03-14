@@ -28,4 +28,5 @@ $status = "UNKNOWN";
                 <a href="./Login.php">
                 <?= $status ?>
                 </a> <br> <br>
+                <!--$_SESSION['login'] = false;-->
 </div>
