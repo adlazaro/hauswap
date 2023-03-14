@@ -1,4 +1,16 @@
 <?php
+require_once 'includes/config.php';
+require_once 'includes/Usuario.php';
+
+                if (isset($_SESSION["login"])) 
+                    echo'Iniciar Sesión';
+                else
+                   echo 'Cerrar Sesión';
+                
+?>
+
+
+<?php
 	    echo '<div style="background-color: #FBC485;    height: 100%; 
                                                     width: 25%;
                                                     position: fixed;
@@ -17,6 +29,6 @@
                 <a href="./Login.php">
                 Login
                 </a> <br> <br>
-      
+
             </div>';
 ?>
