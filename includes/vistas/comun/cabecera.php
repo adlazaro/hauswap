@@ -1,19 +1,19 @@
 <?php
-		$mostrarMenu = false;
+		$mostrarMenu = false; //variable para mostrar
         if (isset($_POST['mostrarOcultar'])) {
             $mostrarMenu = ! $mostrarMenu; //cambia el valor
         }  
 ?>
 
 <?php
-// Obtener el valor actual de $mostrarMenu de la cookie, si existe
+// Crear una cookie para la variable y obtener el valor actual de $mostrarMenu de la cookie, si existe
 if (isset($_COOKIE['mostrarMenu'])) {
     $mostrarMenu = $_COOKIE['mostrarMenu'] == 'true';
 } else {
     $mostrarMenu = false;
 }
 
-// Actualizar el valor de $mostrarMenu si se envió el formulario
+// Actualizar el valor de $mostrarMenu si se envió el formulario, para que muestre o deje de mostrar
 if (isset($_POST['mostrarOcultar'])) {
     $mostrarMenu = !$mostrarMenu;
     setcookie('mostrarMenu', $mostrarMenu ? 'true' : 'false', time() + 3600, '/');
@@ -24,6 +24,7 @@ if ($mostrarMenu)
 ?>
 
 <?php
+    // Header
 	echo '<header style="background-color: #FBC485; height: 80px; width: 100%; text-align: center;">
                 <a href="./index.php">
                     <img src="./resources/logo.png"  alt="Logo" 
@@ -36,7 +37,7 @@ if ($mostrarMenu)
                             
                 <!--Botón--!>
                 <form method="post">
-                <button type="submit" name="mostrarOcultar" style="position: absolute;
+                    <button type="submit" name="mostrarOcultar" style="position: absolute;
                                                                    top: 0;
                                                                    right: 0;
                                                                    margin-top: 10px;
@@ -51,15 +52,7 @@ if ($mostrarMenu)
                                                             style="position: absolute;
                                                                    top: 0;
                                                                    right: 0;">
-                </button>
+                    </button>
                 </form>
-                
-
-                <!--
-                <a href="./includes/vistas/comun/menu.php">
-                    <img src="./resources/logo.png"  alt="Logo" 
-                                                            height="80px" 
-                                                            style="float: right; margin-left: 15px;">
-                </a> --!>
             </header>';
 ?>
