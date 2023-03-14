@@ -1,6 +1,8 @@
 <?php
 require_once 'includes/config.php';
 require_once 'includes/Usuario.php';
+$tituloPagina = 'Iniciar Sesión';
+
  // Capturo las variables username y password
  $username = htmlspecialchars(trim(strip_tags($_REQUEST["email"])));
  $password = htmlspecialchars(trim(strip_tags($_REQUEST["password"])));
@@ -8,7 +10,7 @@ require_once 'includes/Usuario.php';
  $usuario = Usuario::login($username, $password);
         
  if (!$usuario) {
-     echo "El usuario o el password no coinciden";
+     $_SESSION['login'] = false;
  } else {
      $_SESSION['login'] = true;
      $_SESSION['nombre'] = $usuario->getcorreo();
@@ -16,9 +18,8 @@ require_once 'includes/Usuario.php';
  }
 
 
-$tituloPagina = 'LogIn';
 
-if (isset($_SESSION["login"])){
+if ($_SESSION["login"] == true){
     $contenidoPrincipal=<<<EOS
 
     <h1>Bienvenido/a ${_SESSION["nombre"]}</h1>

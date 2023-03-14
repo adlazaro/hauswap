@@ -34,7 +34,7 @@ class Usuario
         if ($rs) {
             $fila = $rs->fetch_assoc();
             if($fila){
-                $user = new Usuario($fila['correo'], $fila['contraseña'], $fila['nombre']);
+                $user = new Usuario($fila['correo'], $fila['contraseña'], $fila['nombre'], $fila['telefono'], $fila['sexo'], $fila['fecha_nacimiento'], $fila['pais']);
             }
             $rs->free();
         } else {
@@ -52,7 +52,7 @@ class Usuario
         if ($rs) {
             $fila = $rs->fetch_assoc();
             if ($fila) {
-                $result = new Usuario($fila['correo'], $fila['contraseña'], $fila['nombre']);
+                $result = new Usuario($fila['correo'], $fila['contraseña'], $fila['nombre'], $fila['telefono'], $fila['sexo'], $fila['fecha_nacimiento'], $fila['pais']);
             }
             $rs->free();
         } else {
