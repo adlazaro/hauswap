@@ -1,6 +1,6 @@
 <?php
 
-$tituloPagina = 'Registro';
+$tituloPagina = 'Registrarse';
 
 $contenidoPrincipal=<<<EOS
 

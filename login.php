@@ -1,6 +1,6 @@
 <?php
 
-$tituloPagina = 'LogIn';
+$tituloPagina = 'Iniciar Sesión';
 
 $contenidoPrincipal=<<<EOS
 

@@ -15,7 +15,7 @@
                 Cuenta
                 </a> <br> <br>
                 <a href="./Login.php">
-                Login
+                Iniciar Sesión/Registrarse
                 </a> <br> <br>
       
             </div>';
