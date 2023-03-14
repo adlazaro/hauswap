@@ -13,7 +13,7 @@ if (isset($_POST['termino'])) {
             $resultados .= "Casas: " . "<br>" . $row["nombre"] ." en     " . $row["localizacion"] . "<br>";
         }
     } else {
-        echo "0 resultados";
+        $resultados = "0 resultados";
     }
 }
 
