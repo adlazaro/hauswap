@@ -10,7 +10,7 @@ if($password != $password2){
     echo "Las contraseñas deben coincidir!";
 }
 else{
-    $usuario = Usuario::buscaUsuario($username, $password);
+    $usuario = Usuario::buscaUsuario($username);
 	
     if ($usuario) {
         echo "El usuario ya existe";
